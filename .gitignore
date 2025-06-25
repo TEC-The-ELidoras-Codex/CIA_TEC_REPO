@@ -1,0 +1,14 @@
+# Ignore raw data and outputs
+UNZIPPED/
+summaries/
+*.tif
+*.txt
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+# VS Code settings
+.vscode/
+# Environment
+.env
+.venv
