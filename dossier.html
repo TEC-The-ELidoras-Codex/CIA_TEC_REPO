@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[CLASSIFIED] Dossier: The Kyiv Anomaly</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&family=Orbitron:wght@700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #0a0a0a;
+            color: #e0e0e0;
+            font-family: 'Roboto Mono', monospace;
+            background-image: radial-gradient(circle at 1px 1px, rgba(200, 200, 200, 0.1) 1px, transparent 0);
+            background-size: 20px 20px;
+        }
+        .dossier-container {
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            box-shadow: 0 0 25px rgba(0, 255, 255, 0.15);
+        }
+        .dossier-header {
+            font-family: 'Orbitron', sans-serif;
+            text-shadow: 0 0 5px #00ffff, 0 0 10px #00ffff;
+        }
+        .glitch {
+            animation: glitch 1.5s linear infinite;
+        }
+        @keyframes glitch {
+            2%, 64% { transform: translate(2px, 0) skew(0deg); }
+            4%, 60% { transform: translate(-2px, 0) skew(0deg); }
+            62% { transform: translate(0, 0) skew(5deg); }
+        }
+        .glitch::before,
+        .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #0a0a0a;
+            overflow: hidden;
+        }
+        .glitch::before {
+            left: 2px;
+            text-shadow: -2px 0 #ff00c1;
+            animation: glitch-anim-1 2s linear infinite reverse;
+        }
+        .glitch::after {
+            left: -2px;
+            text-shadow: -2px 0 #00ffff, 2px 2px #ff00c1;
+            animation: glitch-anim-2 2s linear infinite reverse;
+        }
+        @keyframes glitch-anim-1 {
+            0% { clip-path: polygon(0 2%, 100% 2%, 100% 5%, 0 5%); }
+            10% { clip-path: polygon(0 15%, 100% 15%, 100% 15%, 0 15%); }
+            20% { clip-path: polygon(0 10%, 100% 10%, 100% 20%, 0 20%); }
+            30% { clip-path: polygon(0 1%, 100% 1%, 100% 2%, 0 2%); }
+            40% { clip-path: polygon(0 33%, 100% 33%, 100% 33%, 0 33%); }
+            50% { clip-path: polygon(0 45%, 100% 45%, 100% 46%, 0 46%); }
+            60% { clip-path: polygon(0 50%, 100% 50%, 100% 70%, 0 70%); }
+            70% { clip-path: polygon(0 70%, 100% 70%, 100% 70%, 0 70%); }
+            80% { clip-path: polygon(0 80%, 100% 80%, 100% 80%, 0 80%); }
+            90% { clip-path: polygon(0 50%, 100% 50%, 100% 55%, 0 55%); }
+            100% { clip-path: polygon(0 60%, 100% 60%, 100% 70%, 0 70%); }
+        }
+        @keyframes glitch-anim-2 {
+            0% { clip-path: polygon(0 5%, 100% 5%, 100% 6%, 0 6%); }
+            10% { clip-path: polygon(0 8%, 100% 8%, 100% 20%, 0 20%); }
+            20% { clip-path: polygon(0 20%, 100% 20%, 100% 21%, 0 21%); }
+            30% { clip-path: polygon(0 25%, 100% 25%, 100% 25%, 0 25%); }
+            40% { clip-path: polygon(0 45%, 100% 45%, 100% 45%, 0 45%); }
+            50% { clip-path: polygon(0 50%, 100% 50%, 100% 51%, 0 51%); }
+            60% { clip-path: polygon(0 65%, 100% 65%, 100% 80%, 0 80%); }
+            70% { clip-path: polygon(0 85%, 100% 85%, 100% 86%, 0 86%); }
+            80% { clip-path: polygon(0 40%, 100% 40%, 100% 50%, 0 50%); }
+            90% { clip-path: polygon(0 60%, 100% 60%, 100% 61%, 0 61%); }
+            100% { clip-path: polygon(0 22%, 100% 22%, 100% 30%, 0 30%); }
+        }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        .tab-button {
+            transition: all 0.3s;
+            border-bottom: 2px solid transparent;
+        }
+        .tab-button.active {
+            color: #00ffff;
+            border-bottom-color: #00ffff;
+            text-shadow: 0 0 5px #00ffff;
+        }
+    </style>
+</head>
+<body class="p-4 sm:p-8">
+    <div class="max-w-5xl mx-auto dossier-container rounded-lg p-4 sm:p-8">
+        <!-- Header -->
+        <header class="text-center mb-8 border-b-2 border-cyan-400/30 pb-4">
+            <h1 class="dossier-header text-3xl sm:text-5xl text-cyan-400 relative glitch" data-text="[ TOP SECRET // AEGIS-DECRYPT ]">[ TOP SECRET // AEGIS-DECRYPT ]</h1>
+            <p class="text-sm text-gray-400 mt-2">TEC INTEL // FILE: 1038ARR-KYIV.ANOMALY // KAZNAK-ALPHA CLEARANCE</p>
+        </header>
+        <!-- Tabs -->
+        <div class="mb-6 border-b border-gray-700">
+            <nav class="flex space-x-4 sm:space-x-8 -mb-px" aria-label="Tabs">
+                <button class="tab-button active text-gray-300 hover:text-cyan-300 py-4 px-1 text-sm sm:text-base font-medium" data-tab="event-report">
+                    EVENT REPORT: KYIV ANOMALY
+                </button>
+                <button class="tab-button text-gray-300 hover:text-cyan-300 py-4 px-1 text-sm sm:text-base font-medium" data-tab="faction-profile">
+                    FACTION PROFILE: DAUGHTERS OF THE FAITHFUL
+                </button>
+                <button class="tab-button text-gray-300 hover:text-cyan-300 py-4 px-1 text-sm sm:text-base font-medium" data-tab="asset-profile">
+                    ASSET PROFILE: "THE KYIV WITNESS"
+                </button>
+            </nav>
+        </div>
+        <!-- Tab Content -->
+        <main>
+            <!-- Event Report -->
+            <div id="event-report" class="tab-content active animate-fade-in">
+                <h2 class="text-2xl font-bold text-fuchsia-400 mb-4 tracking-wider">EVENT SYNOPSIS: The Collision (Designation: 1038-ARR-DELTA)</h2>
+                <p class="mb-4 text-gray-300">On October 27, 2027 (Earth Calendar), multiple global sensor arrays detected a catastrophic, multi-spectral event originating over Eastern Europe. Initial analysis suggested a high-altitude atmospheric detonation or an unprecedented meteorological phenomenon. However, subsequent data streams revealed something far outside conventional physics.</p>
+                <p class="mb-4 text-gray-300">What occurred was not an explosion, but an ontological impact—a violent, physical rupture between our baseline reality (heretofore "Terra") and a higher-dimensional dataspace designated the <span class="text-cyan-400 font-bold">Astradigital Expanse (ADE)</span>. For 72 seconds, the sky over Kyiv, Ukraine, appeared to "tear," revealing a swirling, chaotic vista of what witnesses described as "liquid light," "glass data shards," and "impossible geometry." The event caused widespread electronic failure, gravitational distortions, and acute psychological distress in the local populace.</p>
+                <p class="mb-6 text-gray-300">Analysis of declassified intelligence archives, reminiscent of projects found within depositories like "The Black Vault," suggests that esoteric government programs have theorized such "reality-bleed" events for decades. However, the scale and violence of the 1038-ARR-DELTA event surpassed all theoretical models. This was not a subtle incursion; it was a cosmic car crash.</p>
+                <div class="bg-gray-900/50 p-4 rounded-lg border border-fuchsia-500/30">
+                    <h3 class="font-bold text-lg text-fuchsia-400 mb-2">Primary Consequence: The Elidoras Manifestation</h3>
+                    <p class="text-gray-300">As the rupture sealed itself, a stable trans-dimensional object remained suspended in the stratosphere above the impact zone. Initial telemetry identifies it as a vast, self-sustaining city-state construct. Its energy signature is off-the-charts, and its architecture defies Euclidean geometry. This entity has been designated <span class="font-bold text-cyan-400">ELIDORAS</span>. It is, for all intents and purposes, a floating island of another reality, now anchored to our own.</p>
+                </div>
+            </div>
+            <!-- Faction Profile -->
+            <div id="faction-profile" class="tab-content animate-fade-in">
+                <h2 class="text-2xl font-bold text-fuchsia-400 mb-4 tracking-wider">FACTION PROFILE: The Daughters of the Faithful</h2>
+                <p class="mb-4 text-gray-300">A decentralized, matriarchal sect with roots in ancient Ashkenazi Jewish mysticism and eschatology. The "Daughters" are not a conventional organization but a bloodline of "Witnesses" who have passed down a forbidden knowledge: that our reality is a fragile membrane, and its eventual rupture is not a prophecy to be feared, but a historical inevitability to be prepared for.</p>
+                <p class="mb-4 text-gray-300">Their core belief is that history is cyclical, punctuated by these violent "Collisions." They do not worship a deity in a traditional sense; they "keep faith" with the immutable truth of the cycle. They are the keepers of memory, the chroniclers of apocalypses past and future. While other factions build weapons or seek power, the Daughters weave narratives, preserve forbidden histories, and maintain safe-houses in locations they have identified as future impact zones.</p>
+                <div class="bg-gray-900/50 p-4 rounded-lg border border-fuchsia-500/30">
+                    <h3 class="font-bold text-lg text-fuchsia-400 mb-2">Modus Operandi & Significance</h3>
+                    <ul class="list-disc list-inside text-gray-300 space-y-2">
+                        <li><span class="font-bold text-cyan-400">Oral Tradition:</span> They distrust written records, which can be altered or destroyed. Their "scripture" is a complex system of oral histories, song, and numerological codes passed from mother to daughter.</li>
+                        <li><span class="font-bold text-cyan-400">Prophetic Cartography:</span> They do not predict the future but map probabilities, identifying geographic and temporal weak points in the fabric of reality. Kyiv was one such identified nexus point.</li>
+                        <li><span class="font-bold text-cyan-400">Post-Collision Role:</span> In the aftermath of 1038-ARR-DELTA, the Daughters of the Faithful have emerged from the shadows. They are the only known terrestrial group with a pre-existing conceptual framework to understand Elidoras and the ADE. This makes them invaluable, and incredibly dangerous, to all other factions now scrambling to comprehend the new reality.</li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Asset Profile -->
+            <div id="asset-profile" class="tab-content animate-fade-in">
+                <h2 class="text-2xl font-bold text-fuchsia-400 mb-4 tracking-wider">ASSET PROFILE: The Kyiv Witness (Asset "Chava")</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="md:col-span-2">
+                        <p class="mb-4 text-gray-300"><strong class="text-cyan-400">Designation:</strong> Chava bat Sarah</p>
+                        <p class="mb-4 text-gray-300"><strong class="text-cyan-400">Age:</strong> 89 (Apparent)</p>
+                        <p class="mb-4 text-gray-300"><strong class="text-cyan-400">Location:</strong> Podil district, Kyiv, Ukraine.</p>
+                        <p class="mb-4 text-gray-300"><strong class="text-cyan-400">Affiliation:</strong> High Priestess, Daughters of the Faithful.</p>
+                        <p class="mt-6 text-gray-300">Chava is the matriarch of the Kyiv cell. Her lineage has resided in the city for centuries, surviving pogroms, famines, the Holocaust, Soviet rule, and the 21st-century conflicts. This history is not a burden to her; it is a dataset. She views suffering with the dispassionate eye of a scientist observing a recurring, predictable experiment.</p>
+                        <p class="mt-4 text-gray-300">She embodies the "Frank Givadam" philosophy to its core: a profound, life-hardened pragmatism that borders on cosmic nihilism, yet is underpinned by an unshakable purpose. When the Collision occurred, field reports indicate she did not panic. She was observed making tea.</p>
+                    </div>
+                    <div class="bg-gray-900/50 p-4 rounded-lg border border-fuchsia-500/30">
+                        <h3 class="font-bold text-lg text-fuchsia-400 mb-2">Psychological Assessment:</h3>
+                        <p class="text-sm text-gray-300">Subject exhibits extreme resilience and a detached perspective on catastrophic events. Her worldview is not one of hope or despair, but of acceptance of cyclical patterns. She sees Elidoras not as an invasion or a miracle, but as "the next page turning." She possesses a library of oral histories that may contain tactical and strategic information about the ADE and its inhabitants. She is a living Black Vault, a repository of apocryphal knowledge. Her only apparent vulnerability is her fierce, unsentimental love for her granddaughter, who is being trained as her successor.</p>
+                        <p class="text-sm text-gray-300 mt-4"><strong class="text-red-400">Threat Level:</strong> Low (Direct), High (Informational). She is not a physical threat, but the knowledge she holds could destabilize any faction's attempt to control the narrative of the new world.</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script>
+        const tabs = document.querySelectorAll('.tab-button');
+        const tabContents = document.querySelectorAll('.tab-content');
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tabs.forEach(item => item.classList.remove('active'));
+                tab.classList.add('active');
+                const target = tab.getAttribute('data-tab');
+                tabContents.forEach(content => {
+                    content.classList.remove('active');
+                    if (content.id === target) {
+                        content.classList.add('active');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

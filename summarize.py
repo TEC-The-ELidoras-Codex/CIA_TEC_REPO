@@ -8,11 +8,13 @@ from collections import Counter
 import fitz  # PyMuPDF
 import pytesseract
 from PIL import Image
+import json
 
 # Load spaCy English model
 nlp = spacy.load('en_core_web_sm')
 
-UNZIPPED_DIR = Path('UNZIPPED')
+# Set the correct UNZIPPED_DIR to the G: drive location
+UNZIPPED_DIR = Path(r'G:/My Drive/TEC_DOCUMENTS/CIA/UNZIPPED')
 SUMMARY_DIR = Path('summaries')
 SUMMARY_DIR.mkdir(exist_ok=True)
 
@@ -54,11 +56,43 @@ def extract_text_from_tif(tif_path):
         print(f"Error reading {tif_path}: {e}")
         return ""
 
+# Function to check for duplicate summary file
+def is_duplicate_summary(summary_text, summary_dir, base_name):
+    txt_path = summary_dir / f"{base_name}_summary.txt"
+    json_path = summary_dir / f"{base_name}_summary.json"
+    for path in [txt_path, json_path]:
+        if path.exists():
+            with open(path, 'r', encoding='utf-8', errors='ignore') as f:
+                if summary_text.strip() == f.read().strip():
+                    return True
+    return False
+
 # Process all supported files in UNZIPPED and subfolders
 for file_path in UNZIPPED_DIR.rglob('*'):
     if file_path.suffix.lower() == '.txt':
+        base_name = file_path.stem
         with open(file_path, 'r', encoding='utf-8', errors='ignore') as f:
             text = f.read()
+        summary = summarize_text(text)
+        key_points = extract_key_points(text)
+        # Deduplication check
+        if is_duplicate_summary(summary, SUMMARY_DIR, base_name):
+            print(f"Duplicate summary for {base_name}, skipping.")
+            continue
+        # Write TXT summary
+        txt_path = SUMMARY_DIR / f"{base_name}_summary.txt"
+        with open(txt_path, 'w', encoding='utf-8') as out:
+            out.write(summary + '\n')
+            out.write('Key Points: ' + ', '.join(key_points) + '\n')
+        # Write JSON summary
+        json_path = SUMMARY_DIR / f"{base_name}_summary.json"
+        with open(json_path, 'w', encoding='utf-8') as jout:
+            json.dump({
+                'file': str(file_path),
+                'summary': summary,
+                'key_points': key_points
+            }, jout, ensure_ascii=False, indent=2)
+        print(f"Summary written for {base_name}")
     elif file_path.suffix.lower() == '.pdf':
         text = extract_text_from_pdf(file_path)
     elif file_path.suffix.lower() == '.tif':
