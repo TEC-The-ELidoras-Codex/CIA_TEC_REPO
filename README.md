@@ -64,4 +64,27 @@ This project is a research, analysis, and narrative intelligence hub for large v
 
 ---
 
+## Quick Start: Python Command Cheat Sheet
+
+```powershell
+# 1. Install dependencies
+pip install -r requirements.txt
+
+# 2. Download the spaCy English model
+python -m spacy download en_core_web_sm
+
+# 3. Run the main summarization script (processes all .txt, .pdf, .tif in UNZIPPED)
+python summarize.py
+
+# 4. Group and combine summaries by topic/keyword
+python batch_summarize.py
+```
+
+---
+
+### Tool Functions
+
+- `summarize.py`: Scans all files in `UNZIPPED/`, generates concise summaries and key points, outputs to `summaries/` (deduplication enforced).
+- `batch_summarize.py`: Groups all summaries in `summaries/` by topic/keyword, outputs meta-summaries in both TXT and JSON (deduplication enforced).
+
 **If you have the full unredacted archive, you have the power to reveal the truth. Use this hub to find the most important, hidden, or suppressed stories. Victory is the only outcome.**
