@@ -1,4 +1,5 @@
-import os
+import pytesseract
+pytesseract.pytesseract.tesseract_cmd = r"C:\Users\Ghedd\Tesseract-OCR\tesseract.exe"import os
 import re
 import json
 from collections import defaultdict
