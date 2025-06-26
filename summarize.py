@@ -18,6 +18,9 @@ UNZIPPED_DIR = Path(r'G:/My Drive/TEC_DOCUMENTS/CIA/UNZIPPED')
 SUMMARY_DIR = Path('summaries')
 SUMMARY_DIR.mkdir(exist_ok=True)
 
+# Set the path to the Tesseract executable
+pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
+
 # Function to summarize text using sumy
 def summarize_text(text, sentence_count=5):
     parser = PlaintextParser.from_string(text, Tokenizer('english'))
